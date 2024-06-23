@@ -1,0 +1,205 @@
+---
+title: "Educational Impacts"
+author: 
+  - Dzhopua, Valeriia[^1]
+bibliography: ../bibliography/biblio.bib
+csl: ../csl/apa.csl
+header-includes:
+  - \usepackage{polyglossia}
+  - \setmainlanguage{english}
+  - \usepackage{booktabs}
+  - \usepackage{caption} 
+  - \captionsetup[table]{skip=10pt}
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_height: 3
+    fig_width: 4
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+    toc: no
+geometry: margin=1in
+link-citations: yes
+urlcolor: blue
+fontsize: 12pt
+biblio-style: apalike
+abstract: |
+   Currently, continuous educational activities play a key role in the development of human capital and socio-economic progress of all countries of the world. Quality education not only broadens the horizons and develops the skills of individuals, but also contributes to the formation of qualified labor resources, increased labor productivity and, as a result, the economic growth of the state as a whole.
+---
+```{r}
+install.packages("tidyverse") 
+
+install.packages("dplyr") 
+
+install.packages("ggplot2") 
+
+install.packages("readr") 
+
+install.packages("readxl") 
+
+install.packages("knitr") 
+
+install.packages("rmarkdown") 
+
+install.packages("shiny") 
+
+install.packages("data.table") 
+
+install.packages("caret") 
+
+install.packages("randomForest")
+
+ install.packages("e1071") 
+
+ install.packages("sf") 
+
+install.packages("sp") 
+
+install.packages("rgdal") 
+
+install.packages("tm") 
+
+install.packages("quanteda") 
+```
+
+```{r setup, include=FALSE} knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)}
+CRAN options(repos = c(CRAN = "https://cloud.r-project.org"))  
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
+
+```
+
+<!-- ======================================================================= -->
+<!-- ============================== FOOTNOTES ============================== -->
+<!-- ======================================================================= -->
+[^1]: 20080879, [Github Repo](https://github.com/ValeriiaDzhopua/finalexam.git)
+
+# Introduction
+ The development of education has an impact on the literacy level of the country's population, indicators of gender equality, and the development of science, innovation and technology. Regular monitoring and analysis of education indicators helps improve the level of education effectiveness. Government structures and other institutions can identify problem areas based on the results of the analysis, make effective management decisions on resource allocation and reform of the educational sector. Historical data helps analyze and identify trends across a wide range of social and economic indicators, including education indicators. Accordingly, thanks to active cooperation with national statistical authorities around the world, the World Bank collects, processes and publishes up-to-date data for most countries of the world in such areas of analysis as literacy rates, coverage at different levels of education, student-teacher ratios, levels of government spending on education, etc. d.
+The goal of my project is to analyze key education indicators for a sample of 50 countries using the World Bank's open Education Statistics dataset. As part of the project, I plan to analyze the current state and dynamics of development of education systems in 50 countries of the world. Based on the results of the analysis, I plan to identify trends and features, as well as conduct cross-country comparisons on a number of indicators.
+The generated data set of variables will allow for a comprehensive analysis of the educational sector in a sample of countries, assessing the literacy level of different population groups, gender and territorial disparities, education coverage, student-teacher ratio, and also comparing these indicators with economic indicators such as GDP and GNI per capita. The World Bank provides open access to its databases, which ensures transparency and the possibility of independent verification of research results. The Education Indicators dataset contains information on 50 countries, from 1973 to 2022, with annual updates. To form a representative sample within the framework of this project, 50 countries from different regions of the world with different levels of economic development will be selected. The selection was based on the criteria of completeness of data for recent years and the diversity of countries by income level.
+During data preparation and subsequent analysis, modern statistical methods and tools will be used, including the R programming language and associated libraries for working with data, such as dplyr, tidyr, ggplot2, etc., which will ensure reproducibility of the results, as well as Demonstrate skills in working with open data and program analysis.
+
+
+## Literature Review
+
+A substantial body of scholarly research has considered the positive impact of the above-mentioned factors on the level of government funding for education, reduction in teacher-student ratios, and a higher level of digital infrastructure development on the quality of public services (Fichtner et al., 2022).
+Educational activities are also closely linked to aspects such as social mobility, innovation activity, population health, and more.
+In their work "Education and Economic Growth," Eric Hanushek and Ludger Woessmann conducted an extensive analysis of the impact of cognitive skills acquired through the education system on macroeconomic indicators. The authors of the study applied data from international student assessment tests to measure the level of human capital in various countries around the world. The results showed that an improvement in the quality of education by one standard deviation on international test scores is associated with a long-term GDP per capita growth of 2%. These findings are confirmed by extensive cross-country material considering various factors (Hanushek & Woessmann, 2020).
+Similar results were obtained in the work of Hunt and Wittmann, where the authors analyzed the relationship between educational achievements and economic growth in the United States. Using NAEP (National Assessment of Educational Progress) test data, they found a significant positive correlation between the level of education and the rates of growth in real earnings, labor productivity, and GDP per capita.
+An important aspect of studying education systems is gender equality. It is necessary to ensure more equal access to education for both men and women, which is one of the UN's sustainable development goals. Countries with higher levels of gender equality in education demonstrate higher rates of economic growth, better health indicators, and social development than other countries.
+The relationship between student achievements in mathematics disciplines and the issue of gender inequality was identified by scholarly research. Studies show a performance gap between boys and girls in education levels in countries with the greatest gender inequality, which requires appropriate management decisions to overcome this inequality (Hunt & Wittmann, 2008).
+The study by Fichtner and colleagues, which focused on analyzing the factors affecting the quality of education systems in different countries, is of great interest. The authors used a dataset from the World Bank on education indicators. Econometric methods of panel data were applied for data analysis to construct regression models and identify the main factors of influence.
+The results showed that a higher level of education funding from the state, lower student-teacher ratios, and a more developed digital infrastructure, measured by the proportion of Internet users, are positively associated with better educational outcomes. In addition, a positive relationship between education spending and long-term economic growth was identified, which is consistent with human capital theory ([Klausen, 2002](https://www.semanticscholar.org/paper/The-Impact-of-Gender-Inequality-in-Education-and-on-Klasen-Lamanna/77bc41987497ee13df55361b65a90668283cafdd)).
+
+Researchers highlight the importance of investing in education, especially in developing countries, to create quality human capital and overcome the cycle of poverty. The need to take into account gender and territorial disparities when developing educational policy is also emphasized.
+The analysis in scientific works has demonstrated a significant gap in literacy and quality of education between students from urban and rural areas. It was found that in countries with high income inequality and a high proportion of the population living in poverty, these disparities are most pronounced. One of the important conclusions of this study is the need for a comprehensive approach to solving the problem of educational inequality in African countries.
+
+# Data
+To achieve this goal, 10 key variables were selected from the Education Indicators data set, divided into categorical, discrete and continuous:
+Categorical variables: Country Name, Adult literacy rate, population 15+ years, adjusted gender parity index, Index of territorial literacy parity of the adult female population (Adult literacy rate, population 15+ years, female, adjusted location parity index).
+Discrete variables: Number of illiterate adult female population (Adult illiterate population, 15+ years, female),Number of illiterate adult male population (Adult illiterate population, 15+ years, male), Number of illiterate female population aged 25-64 years (Illiterate population, 25-64 years, female). Number of illiterate male population aged 25-64 years (Illiterate population, 25-64 years, male).
+Continuous Variables: GDP per capita (current prices, US$) (GDP per capita, current US$).GDP by purchasing power parity (current international dollars) (GDP, PPP current international $).Gross national income at PPP (current international dollars) (GNI, PPP current international $)
+
+According to the analyzed statistical characteristics for the country of Afghanistan, in 2017 there was a slight increase in the average level of the indicator, an increase in its variability, as well as a noticeable increase in the maximum value against the background of a decrease in the minimum and median, which may indicate the heterogeneity of changes in the educational level indicator in different parts of its distribution. For a more detailed analysis of the available data, it is recommended to conduct additional statistical tests and visualize the distribution of indicator values for both years. 
+```{r,echo=FALSE}
+library(tidyverse)
+library(here)
+required_packages <- c("dplyr", "tidyr", "summarytools", "ggplot2", "broom", "xtable", "gridExtra")
+new_packages <- required_packages[!(required_packages %in% installed.packages()[,"Package"])]
+if(length(new_packages)) install.packages(new_packages)
+library(dplyr)
+library(tidyr)
+library(summarytools)
+library(ggplot2)
+library(broom)
+library(xtable)
+library(gridExtra)
+st_options(lang = "en")
+survey <- read_csv(here("data/survey.csv"))
+```
+The median value of the indicator decreased in 2017 by 681.07 compared to 2016, which may indicate a general shift in the distribution of values to the left.
+
+
+
+
+# Methods and Data Analysis
+GDP data for 2015, 2016 and 2017 were converted to numeric format, then filtered data for Afghanistan was converted to long format for easier visualization and analysis. After this, a graph was created with points and a regression line, which displays the regression equation.
+
+$$
+Y_t = \beta_0 + \beta_N N_t + \beta_P P_t + \beta_I I_t + \varepsilon_t
+$$
+```{r results='asis', echo=FALSE, fig.align='center', fig.cap='Statistics on education in Afghanistan'}
+survey$`2015` <- as.numeric(survey$`2015`)
+survey$`2016` <- as.numeric(survey$`2016`)
+survey$`2017` <- as.numeric(survey$`2017`)
+afghanistan_data <- survey %>% filter(country == "Afghanistan")
+afghanistan_long <- afghanistan_data %>%
+  select(country, `2017`, `2016`, `2015`) %>%
+  pivot_longer(cols = c(`2017`, `2016`, `2015`), names_to = "Year", values_to = "Value")
+ggplot(afghanistan_long, aes(x = Year, y = Value, group = country)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_discrete("Year") + 
+  scale_y_continuous("Value")
+```
+
+The analyzed statistics for Afghanistan, despite their limitations, also indicate the potential for improving educational indicators and, as a result, accelerating the economic development of the country.
+
+```{r, echo=FALSE}
+library(xtable) 
+library(summarytools)
+st_options(lang = "en")
+```
+
+Improvements in educational quality, measured as one standard deviation improvement in student test scores, are associated with long-term growth in Afghanistan's per capita GDP.
+```{r results='asis', echo=FALSE}
+years <- c("2018", "2017", "2016", "2015", "2014")
+descr_stats <- survey %>%
+  select(all_of(years)) %>%
+  descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE)
+descr_stats %>%
+  xtable(caption = "Summary Statistics",
+         label = "tab:summary",
+         align = c("l", "c", "c", "c", "c", "c")) %>%
+  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+```
+The low slope of the regression line indicates that education indicators in 2015, 2016 and 2017 have little dependence on time. Accordingly, other factors have a significant impact on the values of economic growth.
+
+```{r results='asis', echo=FALSE, fig.align='center', fig.cap='Regression analysis'}
+survey$`2015` <- as.numeric(survey$`2015`)
+survey$`2016` <- as.numeric(survey$`2016`)
+survey$`2017` <- as.numeric(survey$`2017`)
+afghanistan_data <- survey %>% filter(country == "Afghanistan")
+afghanistan_long <- afghanistan_data %>%
+  select(country, `2017`, `2016`, `2015`) %>%
+  pivot_longer(cols = c(`2017`, `2016`, `2015`), names_to = "Year", values_to = "Value")
+plot <- ggplot(afghanistan_long, aes(x = as.numeric(Year), y = Value, group = country)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_x_continuous("Year") + 
+  scale_y_continuous("Value") +
+  ggtitle("Regression equation")
+lm_model <- lm(Value ~ as.numeric(Year), data = afghanistan_long)
+coefficients <- coef(lm_model)
+equation <- paste("y = ", round(coefficients[1], 2), " + ", round(coefficients[2], 2), "x", sep = "")
+plot <- plot + annotate("text", x = 2016, y = max(afghanistan_long$Value), label = equation, hjust = 0)
+print(plot)
+```
+Investments in improving the quality and accessibility of education, including through gender equality, can be seen as a key factor in Afghanistan's long-term economic growth and social development.
+
+# Conclusion
+Countries with higher levels of gender equality in education experience higher rates of economic growth and better indicators of public health and social development. At the same time, in countries with the greatest gender inequality, there is a gap in the performance of boys and girls in mathematical disciplines, which requires appropriate management decisions.
+\newpage
+
+# References 
+
+1. Fichtner, J., Kleinert, J., Langer, M., & Rieger, J. (2022). The Determinants of Educational Attainment: Understanding Influences in Cross-Country Perspective. Education Economics, 30(3), 280-305. https://www.researchgate.net/publication/353375565_The_Determinants_of_Educational_Attainment_Modeling_and_Estimating_the_Human_Capital_Model_and_Education_Production_Functions 
+2.	Hanushek, E. A., & Woessmann, L. (2020). Education and Economic Growth. In S. Bradley & C. Green (Eds.), The Economics of Education (2nd ed., pp. 167-186). Academic Press. https://www.researchgate.net/publication/279603863_Education_and_economic_growth_It's_not_just_going_to_school_but_learning_something_while_there_that_matters 
+3.	Hunt, J., & Wittmann, R. (2008). The Economics of Human Capital Formation: The Importance of Primary and Secondary Schooling. Review of Economics & Statistics, 90(2), 325-336. https://www.researchgate.net/publication/44841384_The_Economics_of_Education_Human_Capital_Family_Background_and_Inequality 
+4.	Klausen, J. (2002). Education and Gender Inequality: Cross-National Perspectives on the Causes and Consequences of Unequal Education. University of Oxford. https://www.semanticscholar.org/paper/The-Impact-of-Gender-Inequality-in-Education-and-on-Klasen-Lamanna/77bc41987497ee13df55361b65a90668283cafdd
+5.Roy Choudhury, Sayantani & Agarwal, Bishaka. (2018). Contribution of Education on Standard of Living. International Journal of Advanced Multidisciplinary Scientific Research. 1. 11-24. 10.31426/ijamsr.2018.1.4.212. 
+
